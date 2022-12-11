@@ -2,10 +2,7 @@
 	import './styles.css';
 </script>
 
-<head>
-	<title>Add Up The Cards!</title>
-	<link rel="icon" href="/static/favicon.ico" />
-</head>
+<head />
 
 <div class="app">
 	<slot />

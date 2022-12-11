@@ -323,6 +323,9 @@
 </script>
 
 <svelte:window bind:innerWidth={vWidth} />
+<svelte:head>
+	<title>Add Up The Cards!</title>
+</svelte:head>
 <!-- dump popups at the top of the html -->
 
 <Popup
