@@ -1,13 +1,15 @@
-<script>
+<script lang="ts">
 	import './styles.css';
+	let innerWidth: number;
 </script>
 
 <head />
+<svelte:window bind:innerWidth />
 
 <div class="app">
 	<slot />
 </div>
-{#if window.innerWidth > 700}
+{#if innerWidth > 700}
 	<div>
 		<a href="/" class="game">Game</a>
 		<a href="/scores" class="scores">High Scores</a>

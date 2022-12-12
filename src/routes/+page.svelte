@@ -2,19 +2,29 @@
 	import Card from './Card.svelte';
 	import LaneBox from './LaneBox.svelte';
 	import FinNums from './FinNums.svelte';
-
-	import { fly } from 'svelte/transition';
 	import Popup from './Popup.svelte';
 	import Timer from './Timer.svelte';
+
+	import { get } from 'svelte/store';
+	import { tutAppear, hintAppear } from '../stores/stores';
+
+	import { fly } from 'svelte/transition';
 
 	//popup logic
 
 	const tutoText =
 		"Welcome to Ryan's Game! To start playing, click on a card and place it on one of the red boxes. Add the values of 3 cards to the given sum in each spot to win!";
-	let tutAppear = true;
+	let tAppear: boolean;
+	tutAppear.subscribe((value) => {
+		tAppear = value;
+	});
 
 	const hintText = 'Hint: You can only place a max of 3 cards per spot in normal mode';
-	let hintAppear = false;
+	//let hintAppear = false;
+	let hAppear: boolean;
+	hintAppear.subscribe((value) => {
+		hAppear = value;
+	});
 
 	const hardText = 'Hard mode has been enabled... Good Luck!';
 	let hardAppear = false;
@@ -334,15 +344,15 @@
 
 <Popup
 	contentText={tutoText}
-	bind:appear={tutAppear}
+	bind:appear={tAppear}
 	fn={() => {
-		hintAppear = true;
+		hintAppear.set(true);
 	}}
 />
 
 <Popup
 	contentText={hintText}
-	bind:appear={hintAppear}
+	bind:appear={hAppear}
 	fn={() => {
 		timerActive = true;
 	}}
