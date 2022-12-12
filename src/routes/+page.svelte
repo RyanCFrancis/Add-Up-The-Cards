@@ -24,7 +24,7 @@
 
 	let hardMode = false;
 
-	let winText = 'Hey! You beat the game with a score of ';
+	let winText = 'Hey! You beat the game with a time of ';
 	let winAppear = false;
 
 	let timerActive = false;
@@ -379,6 +379,7 @@
 	<div class="redBlock" />
 {/if}
 
+<!-- Timer -->
 {#if timerActive && vWidth > acceptableWidth}
 	<Timer bind:currentTimeString bind:timeStart />
 {/if}
