@@ -6,19 +6,34 @@
 	import Timer from './Timer.svelte';
 
 	import { get } from 'svelte/store';
-	import { tutAppear, hintAppear } from '../stores/stores';
+	import { tutAppear, tutDone } from '../stores/stores';
 
 	import { fly } from 'svelte/transition';
 
 	//popup logic
 
-	const tutoText =
+	let tutoText =
 		"Welcome to Ryan's Game! To start playing, click on a card and place it on one of the red boxes. Add the values of 3 cards to the given sum in each spot to win!";
-	let tAppear = $tutAppear;
+	tutoText += ' Hint: You can only place 3 cards per spot';
+	// let tAppear: boolean;
+	// tutAppear.subscribe((val) => {
+	// 	tAppear = val;
+	// });
 
-	const hintText = 'Hint: You can only place a max of 3 cards per spot in normal mode';
-	//let hintAppear = false;
-	let hAppear = $hintAppear;
+	//const hintText = 'Hint: You can only place a max of 3 cards per spot in normal mode';
+
+	// let hAppear: boolean;
+	// tutAppear.subscribe((val) => {
+	// 	hAppear = val;
+	// });
+
+	if (!get(tutAppear)) {
+		tutDone.set(true);
+	}
+	if (get(tutAppear)) {
+		console.log('failure');
+	}
+	//console.log('page load');
 
 	const hardText = 'Hard mode has been enabled... Good Luck!';
 	let hardAppear = false;
@@ -306,6 +321,7 @@
 
 		if (isSolvedList[0] && isSolvedList[1] && isSolvedList[2]) {
 			timerActive = false;
+
 			winText += currentTimeString;
 			winAppear = true;
 		}
@@ -324,6 +340,7 @@
 		}
 		if (isSolvedList[0] && isSolvedList[1] && isSolvedList[2]) {
 			timerActive = false;
+
 			winText += currentTimeString;
 			winAppear = true;
 		}
@@ -335,31 +352,13 @@
 	<title>Add Up The Cards!</title>
 </svelte:head>
 <!-- dump popups at the top of the html -->
-
-<Popup
-	contentText={tutoText}
-	bind:appear={tAppear}
-	fn={() => {
-		hintAppear.set(true);
-		tutAppear.set(false);
-	}}
-/>
-
-<Popup
-	contentText={hintText}
-	bind:appear={hAppear}
-	fn={() => {
-		timerActive = true;
-		hintAppear.set(false);
-	}}
-/>
-
-{#if !hAppear && !tAppear}
+{#if get(tutAppear)}
 	<Popup
-		contentText={'The Game Timer will start after Closing out This Popup'}
-		appear={true}
+		contentText={tutoText}
+		appear={get(tutAppear)}
 		fn={() => {
 			timerActive = true;
+			tutAppear.set(false);
 		}}
 	/>
 {/if}
@@ -390,6 +389,16 @@
 		timerActive = true;
 	}}
 />
+
+{#if !get(tutAppear) && get(tutDone) && vWidth > acceptableWidth}
+	<Popup
+		contentText={'The Timer will start after Closing out This Popup'}
+		appear={true}
+		fn={() => {
+			timerActive = true;
+		}}
+	/>
+{/if}
 <!-- red flash if you do something not allowed -->
 {#if isRedVisible}
 	<div class="redBlock" />

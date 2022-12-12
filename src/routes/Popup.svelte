@@ -41,7 +41,7 @@
 	.cont {
 		position: absolute;
 		left: 30%;
-		bottom: 50%;
+		bottom: 40%;
 		width: auto;
 		max-width: 40vw;
 		padding: 1%;
