@@ -14,7 +14,7 @@
 
 {#if appear}
 	<div class="contBG">
-		<div class="cont" out:fade={{ duration: 250 }} in:fade>
+		<div class="cont" in:fade>
 			<div class={classType}>{contentText}</div>
 			<button
 				class="closeButton"

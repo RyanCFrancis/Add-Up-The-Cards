@@ -71,6 +71,10 @@
 	let possibleCombo: number = Math.floor(Math.random() * maxCombos);
 	//console.log(possibleCombo);
 
+	//LEFT REFERS TO TOP
+	//MID IS MID
+	//RIGHT REFERS TO BOTTOM
+
 	let leftLane = { spot: 'left' };
 	let midLane = { spot: 'mid' };
 	let rightLane = { spot: 'right' };
@@ -357,7 +361,7 @@
 	contentText={hardText}
 	bind:appear={hardAppear}
 	fn={() => {
-		resetGame();
+		//resetGame();
 		timerActive = true;
 	}}
 />
@@ -366,7 +370,7 @@
 	contentText={easyText}
 	bind:appear={easyAppear}
 	fn={() => {
-		resetGame();
+		//resetGame();
 		timerActive = true;
 	}}
 />
