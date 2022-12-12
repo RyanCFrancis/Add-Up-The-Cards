@@ -2,19 +2,39 @@
 	import Card from './Card.svelte';
 	import LaneBox from './LaneBox.svelte';
 	import FinNums from './FinNums.svelte';
-
-	import { fly } from 'svelte/transition';
 	import Popup from './Popup.svelte';
 	import Timer from './Timer.svelte';
 
+	import { get } from 'svelte/store';
+	import { tutAppear, tutDone } from '../stores/stores';
+
+	import { fly } from 'svelte/transition';
+
 	//popup logic
 
-	const tutoText =
+	let tutoText =
 		"Welcome to Ryan's Game! To start playing, click on a card and place it on one of the red boxes. Add the values of 3 cards to the given sum in each spot to win!";
-	let tutAppear = true;
+	tutoText += ' Hint: You can only place 3 cards per spot';
 
-	const hintText = 'Hint: You can only place a max of 3 cards per spot in normal mode';
-	let hintAppear = false;
+	// let tAppear: boolean;
+	// tutAppear.subscribe((val) => {
+	// 	tAppear = val;
+	// });
+
+	//const hintText = 'Hint: You can only place a max of 3 cards per spot in normal mode';
+
+	// let hAppear: boolean;
+	// tutAppear.subscribe((val) => {
+	// 	hAppear = val;
+	// });
+
+	if (!get(tutAppear)) {
+		tutDone.set(true);
+	}
+	// if (get(tutAppear)) {
+	// 	console.log('failure');
+	// }
+	//console.log('page load');
 
 	const hardText = 'Hard mode has been enabled... Good Luck!';
 	let hardAppear = false;
@@ -24,7 +44,7 @@
 
 	let hardMode = false;
 
-	let winText = 'Hey! You beat the game with a score of ';
+	let winText = 'Hey! You beat the game with a time of ';
 	let winAppear = false;
 
 	let timerActive = false;
@@ -70,6 +90,10 @@
 	const maxCombos = 13;
 	let possibleCombo: number = Math.floor(Math.random() * maxCombos);
 	//console.log(possibleCombo);
+
+	//LEFT REFERS TO TOP
+	//MID IS MID
+	//RIGHT REFERS TO BOTTOM
 
 	let leftLane = { spot: 'left' };
 	let midLane = { spot: 'mid' };
@@ -298,6 +322,7 @@
 
 		if (isSolvedList[0] && isSolvedList[1] && isSolvedList[2]) {
 			timerActive = false;
+
 			winText += currentTimeString;
 			winAppear = true;
 		}
@@ -316,6 +341,7 @@
 		}
 		if (isSolvedList[0] && isSolvedList[1] && isSolvedList[2]) {
 			timerActive = false;
+
 			winText += currentTimeString;
 			winAppear = true;
 		}
@@ -323,23 +349,20 @@
 </script>
 
 <svelte:window bind:innerWidth={vWidth} />
+<svelte:head>
+	<title>Add Up The Cards!</title>
+</svelte:head>
 <!-- dump popups at the top of the html -->
-
-<Popup
-	contentText={tutoText}
-	bind:appear={tutAppear}
-	fn={() => {
-		hintAppear = true;
-	}}
-/>
-
-<Popup
-	contentText={hintText}
-	bind:appear={hintAppear}
-	fn={() => {
-		timerActive = true;
-	}}
-/>
+{#if get(tutAppear)}
+	<Popup
+		contentText={tutoText}
+		appear={get(tutAppear)}
+		fn={() => {
+			timerActive = true;
+			tutAppear.set(false);
+		}}
+	/>
+{/if}
 
 <Popup
 	bind:contentText={winText}
@@ -354,7 +377,7 @@
 	contentText={hardText}
 	bind:appear={hardAppear}
 	fn={() => {
-		resetGame();
+		//resetGame();
 		timerActive = true;
 	}}
 />
@@ -363,15 +386,26 @@
 	contentText={easyText}
 	bind:appear={easyAppear}
 	fn={() => {
-		resetGame();
+		//resetGame();
 		timerActive = true;
 	}}
 />
+
+{#if !get(tutAppear) && get(tutDone) && vWidth > acceptableWidth}
+	<Popup
+		contentText={'The Timer will start after Closing out This Popup'}
+		appear={true}
+		fn={() => {
+			timerActive = true;
+		}}
+	/>
+{/if}
 <!-- red flash if you do something not allowed -->
 {#if isRedVisible}
 	<div class="redBlock" />
 {/if}
 
+<!-- Timer -->
 {#if timerActive && vWidth > acceptableWidth}
 	<Timer bind:currentTimeString bind:timeStart />
 {/if}

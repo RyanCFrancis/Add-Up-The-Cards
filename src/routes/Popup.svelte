@@ -14,7 +14,7 @@
 
 {#if appear}
 	<div class="contBG">
-		<div class="cont" out:fade={{ duration: 250 }} in:fade>
+		<div class="cont" in:fade>
 			<div class={classType}>{contentText}</div>
 			<button
 				class="closeButton"
@@ -41,7 +41,7 @@
 	.cont {
 		position: absolute;
 		left: 30%;
-		bottom: 50%;
+		bottom: 40%;
 		width: auto;
 		max-width: 40vw;
 		padding: 1%;
