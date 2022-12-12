@@ -351,6 +351,11 @@
 <svelte:window bind:innerWidth={vWidth} />
 <svelte:head>
 	<title>Add Up The Cards!</title>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Add the cards up to the given totals!" />
+	<meta name="keywords" content="Card,Game,Sum,Matching" />
+	<meta name="author" content="Ryan Francis" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 <!-- dump popups at the top of the html -->
 {#if get(tutAppear)}
