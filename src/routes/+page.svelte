@@ -15,6 +15,7 @@
 	let tutoText =
 		"Welcome to Ryan's Game! To start playing, click on a card and place it on one of the red boxes. Add the values of 3 cards to the given sum in each spot to win!";
 	tutoText += ' Hint: You can only place 3 cards per spot';
+
 	// let tAppear: boolean;
 	// tutAppear.subscribe((val) => {
 	// 	tAppear = val;
@@ -30,9 +31,9 @@
 	if (!get(tutAppear)) {
 		tutDone.set(true);
 	}
-	if (get(tutAppear)) {
-		console.log('failure');
-	}
+	// if (get(tutAppear)) {
+	// 	console.log('failure');
+	// }
 	//console.log('page load');
 
 	const hardText = 'Hard mode has been enabled... Good Luck!';
