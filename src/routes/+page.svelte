@@ -14,17 +14,11 @@
 
 	const tutoText =
 		"Welcome to Ryan's Game! To start playing, click on a card and place it on one of the red boxes. Add the values of 3 cards to the given sum in each spot to win!";
-	let tAppear: boolean;
-	tutAppear.subscribe((value) => {
-		tAppear = value;
-	});
+	let tAppear = $tutAppear;
 
 	const hintText = 'Hint: You can only place a max of 3 cards per spot in normal mode';
 	//let hintAppear = false;
-	let hAppear: boolean;
-	hintAppear.subscribe((value) => {
-		hAppear = value;
-	});
+	let hAppear = $hintAppear;
 
 	const hardText = 'Hard mode has been enabled... Good Luck!';
 	let hardAppear = false;
@@ -347,6 +341,7 @@
 	bind:appear={tAppear}
 	fn={() => {
 		hintAppear.set(true);
+		tutAppear.set(false);
 	}}
 />
 
@@ -355,8 +350,19 @@
 	bind:appear={hAppear}
 	fn={() => {
 		timerActive = true;
+		hintAppear.set(false);
 	}}
 />
+
+{#if !hAppear && !tAppear}
+	<Popup
+		contentText={'The Game Timer will start after Closing out This Popup'}
+		appear={true}
+		fn={() => {
+			timerActive = true;
+		}}
+	/>
+{/if}
 
 <Popup
 	bind:contentText={winText}
