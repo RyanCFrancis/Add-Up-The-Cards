@@ -12,7 +12,7 @@
 	let interval = setInterval(() => {
 		currentTime = Date.now() - timeStart + 50000;
 
-		//first if is if the timer is past 1.59 seconds
+		//first if is if the timer is greater than 1.59 minutes
 		//the else if is for greater than 1 minute but less than 2
 		//the last else is for less than 1 minute
 		if (currentTime >= 120000) {
