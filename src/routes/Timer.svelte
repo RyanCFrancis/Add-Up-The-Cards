@@ -10,7 +10,7 @@
 	export let currentTimeString = '';
 
 	let interval = setInterval(() => {
-		currentTime = Date.now() - timeStart + 50000;
+		currentTime = Date.now() - timeStart;
 
 		//first if is if the timer is greater than 1.59 minutes
 		//the else if is for greater than 1 minute but less than 2
