@@ -48,8 +48,11 @@
 	let winAppear = false;
 
 	let timerActive = false;
+	let timerVis = false;
 	let currentTimeString = '';
 	let timeStart: number;
+	// timerEnd will be in milliseconds
+	let timerEnd: number;
 
 	//logic for red block appearing
 	let isRedVisible = false;
@@ -146,6 +149,8 @@
 		rightSum = 0;
 		isSolvedList = [false, false, false];
 		timerActive = false;
+		//need to refresh the wintext otherwise it compounds the times when the game is beaten
+		winText = 'Hey! You beat the game with a time of ';
 		timeStart = Date.now();
 	}
 
@@ -321,10 +326,7 @@
 		}
 
 		if (isSolvedList[0] && isSolvedList[1] && isSolvedList[2]) {
-			timerActive = false;
-
-			winText += currentTimeString;
-			winAppear = true;
+			gameWon();
 		}
 	}
 
@@ -340,10 +342,22 @@
 			} else isSolvedList[i] = false;
 		}
 		if (isSolvedList[0] && isSolvedList[1] && isSolvedList[2]) {
-			timerActive = false;
+			gameWon();
+		}
+	}
 
-			winText += currentTimeString;
-			winAppear = true;
+	function gameWon() {
+		timerActive = false;
+		timerVis = false;
+		winText += currentTimeString;
+		winAppear = true;
+	}
+
+	function resetTimer() {
+		timerActive = true;
+		timeStart = Date.now();
+		if (vWidth > acceptableWidth) {
+			timerVis = true;
 		}
 	}
 </script>
@@ -362,7 +376,7 @@
 		contentText={tutoText}
 		appear={get(tutAppear)}
 		fn={() => {
-			timerActive = true;
+			resetTimer();
 			tutAppear.set(false);
 		}}
 	/>
@@ -373,7 +387,7 @@
 	bind:appear={winAppear}
 	fn={() => {
 		resetGame();
-		timerActive = true;
+		resetTimer();
 	}}
 />
 
@@ -382,7 +396,7 @@
 	bind:appear={hardAppear}
 	fn={() => {
 		//resetGame();
-		timerActive = true;
+		resetTimer();
 	}}
 />
 
@@ -391,7 +405,7 @@
 	bind:appear={easyAppear}
 	fn={() => {
 		//resetGame();
-		timerActive = true;
+		resetTimer();
 	}}
 />
 
@@ -400,7 +414,7 @@
 		contentText={'The Timer will start after Closing out This Popup'}
 		appear={true}
 		fn={() => {
-			timerActive = true;
+			resetTimer();
 		}}
 	/>
 {/if}
@@ -410,9 +424,8 @@
 {/if}
 
 <!-- Timer -->
-{#if timerActive && vWidth > acceptableWidth}
-	<Timer bind:currentTimeString bind:timeStart />
-{/if}
+
+<Timer bind:currentTimeString bind:timeStart bind:timerVis bind:currentTime={timerEnd} />
 
 <!-- sums needed at the top -->
 {#key possibleCombo}
