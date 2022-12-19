@@ -20,4 +20,5 @@ export const tutDone = writable<boolean>('tutDone', false);
 // 		window.localStorage.setItem('tutAppear', JSON.stringify(value));
 // 	}
 // });
+
 //,{storage:"session"}

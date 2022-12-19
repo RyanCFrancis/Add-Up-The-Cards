@@ -353,9 +353,8 @@
 	<title>Add Up The Cards!</title>
 	<meta charset="UTF-8" />
 	<meta name="description" content="Add the cards up to the given totals!" />
-	<meta name="keywords" content="Card,Game,Sum,Matching" />
+	<meta name="keywords" content="Card,Game,Sum,Matching,Add" />
 	<meta name="author" content="Ryan Francis" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 <!-- dump popups at the top of the html -->
 {#if get(tutAppear)}
@@ -396,7 +395,7 @@
 	}}
 />
 
-{#if !get(tutAppear) && get(tutDone) && vWidth > acceptableWidth}
+{#if get(tutDone) && vWidth > acceptableWidth}
 	<Popup
 		contentText={'The Timer will start after Closing out This Popup'}
 		appear={true}
