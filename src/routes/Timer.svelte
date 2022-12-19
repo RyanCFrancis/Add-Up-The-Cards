@@ -32,8 +32,6 @@
 		}
 	}, 1);
 
-	function convertTime(time: number) {}
-
 	onDestroy(() => {
 		clearInterval(interval);
 	});
