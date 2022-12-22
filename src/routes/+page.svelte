@@ -85,6 +85,7 @@
 	let firstANSSum: number;
 	let secANSSum: number;
 	let thirdANSSum: number;
+	let sortedCombo: number[];
 
 	let ansList: number[] = [];
 
@@ -342,7 +343,9 @@
 			} else isSolvedList[i] = false;
 		}
 		if (isSolvedList[0] && isSolvedList[1] && isSolvedList[2]) {
-			gameWon();
+			if (hand.length == 0) {
+				gameWon();
+			}
 		}
 	}
 
@@ -431,7 +434,7 @@
 {#key possibleCombo}
 	<FinNums
 		{hardMode}
-		rando={possibleCombo}
+		{sortedCombo}
 		bind:firstNum={firstANSSum}
 		bind:secNum={secANSSum}
 		bind:thirdNum={thirdANSSum}

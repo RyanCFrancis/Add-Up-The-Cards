@@ -1,40 +1,72 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	export let rando: number;
+	//export let rando: number;
 
-	// export let is1Solved = false;
-	// export let is2Solved = false;
-	// export let is3Solved = false;
-
-	export let firstNum: number;
-	export let secNum: number;
-	export let thirdNum: number;
+	export let firstNum = 0;
+	export let secNum = 0;
+	export let thirdNum = 0;
 	export let hardMode: boolean;
-
+	export let sortedCombo: number[];
 	export let isTrueList: boolean[] = [];
 
-	export function generateCombo() {
+	function generateCombo() {
 		if (!hardMode) {
-			let potentTrios: number[][] = [
-				[24, 6, 15],
-				[7, 22, 16],
-				[21, 13, 11],
-				[14, 15, 16],
-				[15, 18, 12],
-				[13, 24, 8],
-				[15, 17, 13],
-				[16, 18, 11],
-				[19, 20, 6],
-				[14, 19, 12],
-				[22, 10, 13],
-				[10, 23, 12],
-				[13, 9, 23]
-			];
+			// let potentTrios: number[][] = [
+			// 	[24, 6, 15],
+			// 	[7, 22, 16],
+			// 	[21, 13, 11],
+			// 	[14, 15, 16],
+			// 	[15, 18, 12],
+			// 	[13, 24, 8],
+			// 	[15, 17, 13],
+			// 	[16, 18, 11],
+			// 	[19, 20, 6],
+			// 	[14, 19, 12],
+			// 	[22, 10, 13],
+			// 	[10, 23, 12],
+			// 	[13, 9, 23]
+			// ];
 
-			firstNum = potentTrios[rando][0];
-			secNum = potentTrios[rando][1];
-			thirdNum = potentTrios[rando][2];
+			// firstNum = potentTrios[rando][0];
+			// secNum = potentTrios[rando][1];
+			// thirdNum = potentTrios[rando][2];
+			let cards: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+			let count: number = 0;
+			let currentIndex = 0;
+
+			//reset to 0 for future playthroughs of the game
+			firstNum = 0;
+			secNum = 0;
+			thirdNum = 0;
+			//first number
+			while (count < 3) {
+				currentIndex = Math.floor(Math.random() * (cards.length - 1) + 1);
+				firstNum += cards[currentIndex];
+				cards.splice(currentIndex, 1);
+				count++;
+			}
+			count = 0;
+			//second number
+			while (count < 3) {
+				currentIndex = Math.floor(Math.random() * (cards.length - 1) + 1);
+				secNum += cards[currentIndex];
+				cards.splice(currentIndex, 1);
+				count++;
+			}
+			count = 0;
+			//third number
+			while (count < 3) {
+				currentIndex = Math.floor(Math.random() * (cards.length - 0) + 0);
+				thirdNum += cards[currentIndex];
+				cards.splice(currentIndex, 1);
+				count++;
+			}
+			count = 0;
+
+			if (firstNum + secNum + thirdNum != 45) {
+				alert('error: the totals dont add up');
+			}
 		} else if (hardMode) {
 			const total = 45;
 			const randomInt = 15;
@@ -43,11 +75,27 @@
 			thirdNum = total - firstNum - secNum;
 
 			if (firstNum + secNum + thirdNum != 45) {
-				alert('error has occurred');
+				alert("the sums can't be solved");
+				throw "the sums can't be solved";
+			}
+		}
+		//sety the array to some initial values;
+		sortedCombo[0] = firstNum;
+		sortedCombo[1] = secNum;
+		sortedCombo[2] = thirdNum;
+		let tempValue: number;
+		//sort the combo in numeric order for exporting to the database for the high scores using bubble sort
+		for (let i = 0; i < sortedCombo.length; i++) {
+			for (let j = 0; j < sortedCombo.length - 1 - i; j++) {
+				if (sortedCombo[j] > sortedCombo[j + 1]) {
+					tempValue = sortedCombo[j];
+					sortedCombo[j] = sortedCombo[j + 1];
+					sortedCombo[j + 1] = tempValue;
+				}
 			}
 		}
 	}
-	onMount(async () => {
+	onMount(() => {
 		generateCombo();
 	});
 </script>
