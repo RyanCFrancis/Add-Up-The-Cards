@@ -7,7 +7,7 @@
 	export let secNum = 0;
 	export let thirdNum = 0;
 	export let hardMode: boolean;
-	export let sortedCombo: number[];
+	export let sortedCombo: number[] = [];
 	export let isTrueList: boolean[] = [];
 
 	function generateCombo() {
@@ -76,7 +76,6 @@
 
 			if (firstNum + secNum + thirdNum != 45) {
 				alert("the sums can't be solved");
-				throw "the sums can't be solved";
 			}
 		}
 		//sety the array to some initial values;
@@ -93,6 +92,10 @@
 					sortedCombo[j + 1] = tempValue;
 				}
 			}
+		}
+
+		if (firstNum === secNum || secNum === thirdNum || thirdNum === firstNum) {
+			generateCombo();
 		}
 	}
 	onMount(() => {
