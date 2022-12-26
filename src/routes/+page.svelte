@@ -368,7 +368,6 @@
 <svelte:window bind:innerWidth={vWidth} />
 <svelte:head>
 	<title>Add Up The Cards!</title>
-	<meta charset="UTF-8" />
 	<meta name="description" content="Add the cards up to the given totals!" />
 	<meta name="keywords" content="Card,Game,Sum,Matching,Add" />
 	<meta name="author" content="Ryan Francis" />
