@@ -10,10 +10,11 @@
 	<slot />
 </div>
 {#if innerWidth > 700}
-	<div>
-		<a href="/" class="game">Game</a>
-		<a href="/scores" class="scores">High Scores</a>
-	</div>
+	<ul class="sidebar">
+		<a href="/" class="sidebarItem">Game</a>
+		<a href="/scores" class="sidebarItem">High Scores</a>
+		<a href="/userAcct" class="sidebarItem">Account</a>
+	</ul>
 {/if}
 
 <style>
@@ -23,14 +24,15 @@
 		min-height: 100vh;
 	}
 
-	.scores {
+	.sidebar {
 		position: absolute;
 		top: 10%;
 		right: 5%;
+		display: grid;
+		flex-direction: column;
 	}
-	.game {
-		position: absolute;
-		top: 5%;
-		right: 5%;
+
+	.sidebarItem {
+		padding-bottom: 10%;
 	}
 </style>
