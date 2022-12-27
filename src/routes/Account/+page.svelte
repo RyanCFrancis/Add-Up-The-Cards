@@ -1,21 +1,15 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
+	let currentSession: any;
 
-	async function toDo() {
-		const {
-			data: { user }
-		} = await supabase.auth.getUser();
-		return user;
-	}
-	onMount(() => {
-		toDo();
+	onMount(async () => {
+		currentSession = await supabase.auth.getSession();
+		console.log(currentSession.data.session.user.id);
 	});
 </script>
 
-{#await toDo() then data}
-	testing{data}
-{/await}
+<div>{currentSession}</div>
 
 <style>
 </style>
