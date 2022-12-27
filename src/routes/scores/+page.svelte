@@ -1,4 +1,10 @@
 <script lang="ts">
+	import { supabase } from '$lib/supabaseClient';
+
+	async () => {
+		const { data, error } = await supabase.auth.getSession();
+		console.log(data);
+	};
 </script>
 
 <h1>High Scores</h1>

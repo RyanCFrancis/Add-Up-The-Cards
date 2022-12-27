@@ -11,7 +11,7 @@
 				//redirectTo: 'https://add.up.the.cards.vercel.app'
 			}
 		});
-		const authToken = data.url;
+		const authToken = data;
 		console.log(authToken);
 	}
 
