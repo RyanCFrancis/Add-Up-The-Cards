@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@supabase/auth-helpers-sveltekit": "^0.8.6",
 		"@supabase/supabase-js": "^2.2.2",
+		"jsonwebtoken": "^9.0.0",
 		"svelte-local-storage-store": "^0.3.2"
 	}
 }

@@ -4,6 +4,7 @@ import { writable } from 'svelte-local-storage-store';
 export const tutAppear = writable<boolean>('tutAppear', true);
 //export const hintAppear = writable<boolean>('hintAppear', false);
 export const tutDone = writable<boolean>('tutDone', false);
+//export const sessionToken = writable<JsonWebKey>('sessionToken',);
 
 // tutAppear.subscribe((value: boolean) => {
 // 	if (browser) {
