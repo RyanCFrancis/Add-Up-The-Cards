@@ -381,7 +381,6 @@
 				combo_three: sortedCombo[2]
 			}
 		]);
-		alert('boop');
 	}
 
 	onMount(async () => {
