@@ -10,6 +10,9 @@
 
 	import { fly } from 'svelte/transition';
 
+	import { supabase } from '$lib/supabaseClient';
+	import { onMount } from 'svelte';
+
 	//popup logic
 
 	let tutoText =
@@ -126,6 +129,8 @@
 	}
 
 	var handCount = 9;
+
+	let userGoogleId: any;
 
 	function resetGame() {
 		leftLaneCards = [];
@@ -354,6 +359,7 @@
 		timerVis = false;
 		winText += currentTimeString;
 		winAppear = true;
+		addScore(timerEnd, leftSum, midSum, rightSum);
 	}
 
 	function resetTimer() {
@@ -363,6 +369,22 @@
 			timerVis = true;
 		}
 	}
+
+	async function addScore(score: number, c1: number, c2: number, c3: number) {
+		const { data, error } = await supabase.from('Scores').insert([
+			{
+				user_made_by: userGoogleId,
+				score: score,
+				combo_one: sortedCombo[0],
+				combo_two: sortedCombo[1],
+				combo_three: sortedCombo[2]
+			}
+		]);
+	}
+
+	onMount(async () => {
+		userGoogleId = await (await supabase.auth.getSession()).data.session?.user.id;
+	});
 </script>
 
 <svelte:window bind:innerWidth={vWidth} />

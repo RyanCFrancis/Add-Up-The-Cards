@@ -21,15 +21,6 @@
 
 		console.log(data![0]);
 	});
-
-	async function addScore() {
-		const { data, error } = await supabase
-			.from('Scores')
-			.insert([
-				{ user_made_by: userGoogleId, score: 180000, combo_one: 20, combo_two: 20, combo_three: 20 }
-			]);
-		alert('boom');
-	}
 </script>
 
 {#await onMount}
@@ -42,8 +33,8 @@
 
 <button
 	on:click={() => {
-		addScore();
-	}}>add a score to the db!!!</button
+		//addScore();
+	}}>does nothing!</button
 >
 
 <style>
