@@ -8,7 +8,7 @@
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
-				redirectTo: '/Scores'
+				redirectTo: window.location.origin
 			}
 		});
 		const authToken = data;
