@@ -2,19 +2,19 @@
 	import './styles.css';
 	import { onMount } from 'svelte';
 	import { invalidate } from '$app/navigation';
-	import { supabase } from '$lib/supabaseClient';
+	//import { supabase } from '$lib/supabaseClient';
 	let innerWidth: number;
 
 	onMount(() => {
-		const {
-			data: { subscription }
-		} = supabase.auth.onAuthStateChange(() => {
-			invalidate('supabase:auth');
-		});
-
-		return () => {
-			subscription.unsubscribe();
-		};
+		// const {
+		// 	data: { subscription }
+		// } = supabase.auth.onAuthStateChange(() => {
+		// 	invalidate('supabase:auth');
+		// });
+		// return () => {
+		// 	subscription.unsubscribe();
+		// };
+		console.log('hi');
 	});
 </script>
 
