@@ -14,7 +14,6 @@
 		// return () => {
 		// 	subscription.unsubscribe();
 		// };
-		console.log('hi');
 	});
 </script>
 

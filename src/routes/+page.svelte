@@ -355,11 +355,12 @@
 	}
 
 	function gameWon() {
+		console.log(sortedCombo);
 		timerActive = false;
 		timerVis = false;
 		winText += currentTimeString;
 		winAppear = true;
-		addScore(timerEnd, leftSum, midSum, rightSum);
+		addScore(timerEnd);
 	}
 
 	function resetTimer() {
@@ -370,16 +371,17 @@
 		}
 	}
 
-	async function addScore(score: number, c1: number, c2: number, c3: number) {
+	async function addScore(time: number) {
 		const { data, error } = await supabase.from('Scores').insert([
 			{
 				user_made_by: userGoogleId,
-				score: score,
+				score: time,
 				combo_one: sortedCombo[0],
 				combo_two: sortedCombo[1],
 				combo_three: sortedCombo[2]
 			}
 		]);
+		alert('boop');
 	}
 
 	onMount(async () => {
@@ -455,7 +457,7 @@
 {#key possibleCombo}
 	<FinNums
 		{hardMode}
-		{sortedCombo}
+		bind:sortedCombo
 		bind:firstNum={firstANSSum}
 		bind:secNum={secANSSum}
 		bind:thirdNum={thirdANSSum}

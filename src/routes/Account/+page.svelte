@@ -31,11 +31,7 @@
 	<p style="color: red">{error.message}</p>
 {/await}
 
-<button
-	on:click={() => {
-		//addScore();
-	}}>does nothing!</button
->
+<button on:click={() => {}}>does nothing!</button>
 
 <style>
 </style>

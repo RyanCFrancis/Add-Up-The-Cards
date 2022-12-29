@@ -78,7 +78,7 @@
 				alert("the sums can't be solved");
 			}
 		}
-		//sety the array to some initial values;
+		//set the array to some initial values;
 		sortedCombo[0] = firstNum;
 		sortedCombo[1] = secNum;
 		sortedCombo[2] = thirdNum;
