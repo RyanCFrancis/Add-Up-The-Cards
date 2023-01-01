@@ -6,7 +6,7 @@
 	import Timer from './Timer.svelte';
 
 	import { get } from 'svelte/store';
-	import { tutAppear, tutDone } from '../stores/stores';
+	import { tutAppear, tutDone } from './stores';
 
 	import { fly } from 'svelte/transition';
 

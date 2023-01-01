@@ -19,7 +19,7 @@
 
 		//console.log(currentName, currentUser);
 
-		console.log(data![0]);
+		console.log(data);
 	});
 </script>
 

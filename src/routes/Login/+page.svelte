@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
-
-	let isLoggedIn: boolean;
+	import { isLoggedIn } from '../stores';
+	import { get } from 'svelte/store';
 
 	async function googleLogin() {
+		isLoggedIn.set(true);
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
@@ -13,11 +14,29 @@
 		});
 		const authToken = data;
 	}
+	async function googleSignOut() {
+		const { error } = await supabase.auth.signOut();
+	}
 
-	onMount(() => {
-		googleLogin();
-	});
+	onMount(() => {});
 </script>
+
+{#if get(isLoggedIn)}
+	<p>You are logged in</p>
+	<button
+		on:click={() => {
+			isLoggedIn.set(false);
+			googleSignOut();
+			window.location.reload();
+		}}>Sign Out</button
+	>
+{:else if get(isLoggedIn) == false}
+	<button
+		on:click={() => {
+			googleLogin();
+		}}>Log in</button
+	>
+{/if}
 
 <style>
 </style>
