@@ -89,14 +89,11 @@
 	let secANSSum: number;
 	let thirdANSSum: number;
 	let sortedCombo: number[];
+	let FinalNumbers: FinNums;
 
 	let ansList: number[] = [];
 
 	let isSolvedList: boolean[] = [false, false, false];
-
-	const maxCombos = 13;
-	let possibleCombo: number = Math.floor(Math.random() * maxCombos);
-	//console.log(possibleCombo);
 
 	//LEFT REFERS TO TOP
 	//MID IS MID
@@ -140,15 +137,7 @@
 			hand[i] = { val: i + 1, spot: 'inHand' };
 		}
 
-		//will let the steps to generate a predetermined code go through just to generate a new combo for hard mode
-		let tempcombo: number = Math.floor(Math.random() * maxCombos);
-		//console.log(tempcombo);
-		if (tempcombo == possibleCombo) {
-			while (tempcombo == possibleCombo) {
-				tempcombo = Math.floor(Math.random() * maxCombos);
-			}
-		}
-		possibleCombo = tempcombo;
+		FinalNumbers.generateCombo();
 
 		leftSum = 0;
 		midSum = 0;
@@ -384,7 +373,7 @@
 	}
 
 	onMount(async () => {
-		userGoogleId = await (await supabase.auth.getSession()).data.session?.user.id;
+		FinalNumbers.generateCombo();
 	});
 </script>
 
@@ -453,16 +442,17 @@
 <Timer bind:currentTimeString bind:timeStart bind:timerVis bind:currentTime={timerEnd} />
 
 <!-- sums needed at the top -->
-{#key possibleCombo}
-	<FinNums
-		{hardMode}
-		bind:sortedCombo
-		bind:firstNum={firstANSSum}
-		bind:secNum={secANSSum}
-		bind:thirdNum={thirdANSSum}
-		isTrueList={isSolvedList}
-	/>
-{/key}
+
+<FinNums
+	bind:this={FinalNumbers}
+	{hardMode}
+	bind:sortedCombo
+	bind:firstNum={firstANSSum}
+	bind:secNum={secANSSum}
+	bind:thirdNum={thirdANSSum}
+	isTrueList={isSolvedList}
+/>
+
 <!-- player return to hand button -->
 <div
 	class="handBox"

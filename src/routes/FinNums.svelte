@@ -10,27 +10,8 @@
 	export let sortedCombo: number[] = [];
 	export let isTrueList: boolean[] = [];
 
-	function generateCombo() {
+	export function generateCombo() {
 		if (!hardMode) {
-			// let potentTrios: number[][] = [
-			// 	[24, 6, 15],
-			// 	[7, 22, 16],
-			// 	[21, 13, 11],
-			// 	[14, 15, 16],
-			// 	[15, 18, 12],
-			// 	[13, 24, 8],
-			// 	[15, 17, 13],
-			// 	[16, 18, 11],
-			// 	[19, 20, 6],
-			// 	[14, 19, 12],
-			// 	[22, 10, 13],
-			// 	[10, 23, 12],
-			// 	[13, 9, 23]
-			// ];
-
-			// firstNum = potentTrios[rando][0];
-			// secNum = potentTrios[rando][1];
-			// thirdNum = potentTrios[rando][2];
 			let cards: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 			let count: number = 0;
 			let currentIndex = 0;
