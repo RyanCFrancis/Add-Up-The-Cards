@@ -3,33 +3,60 @@
 	import { onMount } from 'svelte';
 	import type { AuthSession } from '@supabase/supabase-js';
 
-	let currentUser: any;
-	let currentName: any;
+	function timeToString(time: number) {
+		let seconds = 0;
+		let milliseconds = 0;
+		let minutes = 0;
+		if (time >= 120000) {
+			minutes = Math.floor(time / 60000);
+			seconds = Math.floor(time / 1000) - minutes * 60;
+			milliseconds = time % 1000;
+			return minutes + ' minutes and ' + seconds + '.' + milliseconds + ' seconds';
+		} else if (time >= 60000 && time < 120000) {
+			minutes = Math.floor(time / 60000);
+			seconds = Math.floor(time / 1000) - minutes * 60;
+			milliseconds = time % 1000;
+			return minutes + ' minute and ' + seconds + '.' + milliseconds + ' seconds';
+		} else {
+			seconds = Math.floor(time / 1000);
+			milliseconds = time % 1000;
+			return seconds + '.' + milliseconds + ' seconds';
+		}
+	}
+
+	let playerIconString: string;
+	let playerName: string;
 	let userGoogleId: any;
+	let userScores: any[] = [];
 
 	onMount(async () => {
-		userGoogleId = await (await supabase.auth.getSession()).data.session?.user.id;
+		userGoogleId = (await supabase.auth.getSession()).data.session?.user.id;
+		playerName = await (await supabase.auth.getUser()).data.user?.user_metadata.full_name;
+		playerIconString = await (await supabase.auth.getUser()).data.user?.user_metadata.avatar_url;
 
 		let { data, error } = await supabase
 			.from('Scores')
-			.select('*')
+			.select('score')
 			.eq('user_made_by', userGoogleId);
 		// currentUser = Users;
-		// currentName = currentUser[0].Name;
 
-		//console.log(currentName, currentUser);
+		console.log(playerIconString);
 
-		console.log(data);
+		userScores = data!;
+		//console.log(userScores);
 	});
 </script>
 
-{#await onMount}
-	<p>Loading...</p>
-{:then}
-	<p>{userGoogleId}</p>
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
+<img src={playerIconString} alt="your icon :)" width="100" />
+<p>{playerName}</p>
+
+<ul>
+	{#each userScores as { score }, i}
+		<ol>
+			{timeToString(score)}
+		</ol>
+	{/each}
+</ul>
 
 <button on:click={() => {}}>does nothing!</button>
 
