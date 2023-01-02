@@ -64,7 +64,7 @@
 		isRedVisible = true;
 		setTimeout(() => {
 			isRedVisible = false;
-		}, 300);
+		}, 250);
 	}
 
 	let vWidth: number;
@@ -516,6 +516,10 @@
 					removingLane = 'left';
 					cardClick(q, leftLane);
 				}}
+				on:dblclick={() => {
+					removeCardFromPack(q);
+					addCardToPack(q, playHand);
+				}}
 				on:keypress={() => {}}
 			>
 				<Card cardValue={q.val} />
@@ -536,6 +540,10 @@
 					removingLane = 'mid';
 					cardClick(q, midLane);
 				}}
+				on:dblclick={() => {
+					removeCardFromPack(q);
+					addCardToPack(q, playHand);
+				}}
 				on:keypress={() => {}}
 			>
 				<Card cardValue={q.val} />
@@ -555,6 +563,10 @@
 				on:click={() => {
 					removingLane = 'right';
 					cardClick(q, rightLane);
+				}}
+				on:dblclick={() => {
+					removeCardFromPack(q);
+					addCardToPack(q, playHand);
 				}}
 				on:keypress={() => {}}
 			>

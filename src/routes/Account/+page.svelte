@@ -40,8 +40,6 @@
 			.eq('user_made_by', userGoogleId);
 		// currentUser = Users;
 
-		console.log(playerIconString);
-
 		userScores = data!;
 		//console.log(userScores);
 	});
