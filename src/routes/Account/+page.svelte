@@ -3,6 +3,27 @@
 	import { onMount } from 'svelte';
 	import type { AuthSession } from '@supabase/supabase-js';
 
+	let playerIconString: string;
+	let playerName: string;
+	let userGoogleId: any;
+	let userData: any[] = [];
+
+	let scoreASC = false;
+	let timeASC = true;
+
+	onMount(async () => {
+		userGoogleId = (await supabase.auth.getSession()).data.session?.user.id;
+		playerName = await (await supabase.auth.getUser()).data.user?.user_metadata.full_name;
+		playerIconString = await (await supabase.auth.getUser()).data.user?.user_metadata.avatar_url;
+
+		let { data, error } = await supabase
+			.from('scores')
+			.select('score,combo_one,combo_two,combo_three,created_at')
+			.eq('user_made_by', userGoogleId);
+
+		userData = data!;
+	});
+
 	function timeToString(time: number) {
 		let seconds = 0;
 		let milliseconds = 0;
@@ -24,25 +45,42 @@
 		}
 	}
 
-	let playerIconString: string;
-	let playerName: string;
-	let userGoogleId: any;
-	let userScores: any[] = [];
+	function sortByScores() {
+		if (scoreASC) {
+			userData.sort((a, b) => a.score - b.score);
+		} else {
+			userData.sort((a, b) => b.score - a.score);
+		}
+		scoreASC = !scoreASC;
 
-	onMount(async () => {
-		userGoogleId = (await supabase.auth.getSession()).data.session?.user.id;
-		playerName = await (await supabase.auth.getUser()).data.user?.user_metadata.full_name;
-		playerIconString = await (await supabase.auth.getUser()).data.user?.user_metadata.avatar_url;
+		userData = userData;
+	}
+	function sortByTime() {
+		if (timeASC) {
+			userData.sort((a, b) => {
+				const itemA = new Date(a.created_at).getTime();
+				const itemB = new Date(b.created_at).getTime();
+				if (itemA > itemB) {
+					return 1;
+				} else {
+					return -1;
+				}
+			});
+		} else {
+			userData.sort((a, b) => {
+				const itemA = new Date(a.created_at).getTime();
+				const itemB = new Date(b.created_at).getTime();
+				if (itemA > itemB) {
+					return -1;
+				} else {
+					return 1;
+				}
+			});
+		}
+		timeASC = !timeASC;
 
-		let { data, error } = await supabase
-			.from('scores')
-			.select('score')
-			.eq('user_made_by', userGoogleId);
-		// currentUser = Users;
-
-		userScores = data!;
-		//console.log(userScores);
-	});
+		userData = userData;
+	}
 
 	async function addScore(time: number) {
 		const { data, error } = await supabase.from('scores').insert([
@@ -62,13 +100,26 @@
 <p>{playerName}</p>
 <p>{userGoogleId}</p>
 
-<ul>
-	{#each userScores as { score }, i}
-		<ol>
-			{timeToString(score)}
-		</ol>
-	{/each}
-</ul>
+<table class="sortable">
+	<thead>
+		<th on:click={() => sortByScores()}>Time</th>
+		<th>Combination</th>
+		<th on:click={() => sortByTime()}>Date + Time Made</th>
+	</thead>
+	<tbody
+		>{#each userData as { score, combo_one, combo_two, combo_three, created_at }}
+			<tr
+				><td> {timeToString(score)}</td>
+				<td
+					>{combo_one}
+					{combo_two}
+					{combo_three}</td
+				>
+				<td>{new Date(created_at).toLocaleString()}</td>
+			</tr>
+		{/each}</tbody
+	>
+</table>
 
 <!-- <button
 	on:click={() => {
@@ -76,4 +127,9 @@
 	}}>adds a score!</button
 > -->
 <style>
+	table,
+	th,
+	td {
+		border: 1px solid white;
+	}
 </style>
