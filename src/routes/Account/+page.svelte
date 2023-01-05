@@ -43,10 +43,24 @@
 		userScores = data!;
 		//console.log(userScores);
 	});
+
+	async function addScore(time: number) {
+		const { data, error } = await supabase.from('scores').insert([
+			{
+				user_made_by: userGoogleId,
+				combo_one: 10,
+				combo_two: 10,
+				combo_three: 10,
+				score: time
+			}
+		]);
+		console.log('inserted');
+	}
 </script>
 
 <img src={playerIconString} alt="your icon :)" width="100" />
 <p>{playerName}</p>
+<p>{userGoogleId}</p>
 
 <ul>
 	{#each userScores as { score }, i}
@@ -56,7 +70,11 @@
 	{/each}
 </ul>
 
-<button on:click={() => {}}>does nothing!</button>
+<button
+	on:click={() => {
+		addScore(10);
+	}}>does nothing!</button
+>
 
 <style>
 </style>

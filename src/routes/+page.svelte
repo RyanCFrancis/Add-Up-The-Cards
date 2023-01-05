@@ -344,7 +344,7 @@
 	}
 
 	function gameWon() {
-		console.log(sortedCombo);
+		//console.log(sortedCombo);
 		timerActive = false;
 		timerVis = false;
 		winText += currentTimeString;
@@ -361,13 +361,13 @@
 	}
 
 	async function addScore(time: number) {
-		const { data, error } = await supabase.from('Scores').insert([
+		const { data, error } = await supabase.from('scores').insert([
 			{
 				user_made_by: userGoogleId,
-				score: time,
 				combo_one: sortedCombo[0],
 				combo_two: sortedCombo[1],
-				combo_three: sortedCombo[2]
+				combo_three: sortedCombo[2],
+				score: time
 			}
 		]);
 	}
