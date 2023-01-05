@@ -28,7 +28,7 @@
 </script>
 
 <div>
-	<div class="Card">
+	<div class="Card" tabindex="-1">
 		<div class="topText">{cardValue}</div>
 		<!-- <div class="middleText">{pickMidText(cardValue)}</div> -->
 		<CardLogo cVal={cardValue} />
@@ -76,6 +76,11 @@
 
 	.Card:hover {
 		transform: translateY(-8px);
+	}
+
+	.Card:focus {
+		/* filter: brightness(0.5); */
+		background-color: aquamarine;
 	}
 
 	.topText {
