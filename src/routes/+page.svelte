@@ -374,6 +374,7 @@
 
 	onMount(async () => {
 		FinalNumbers.generateCombo();
+		userGoogleId = (await supabase.auth.getSession()).data.session?.user.id;
 	});
 </script>
 

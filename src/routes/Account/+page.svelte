@@ -35,7 +35,7 @@
 		playerIconString = await (await supabase.auth.getUser()).data.user?.user_metadata.avatar_url;
 
 		let { data, error } = await supabase
-			.from('Scores')
+			.from('scores')
 			.select('score')
 			.eq('user_made_by', userGoogleId);
 		// currentUser = Users;
@@ -70,11 +70,10 @@
 	{/each}
 </ul>
 
-<button
+<!-- <button
 	on:click={() => {
 		addScore(10);
-	}}>does nothing!</button
->
-
+	}}>adds a score!</button
+> -->
 <style>
 </style>
