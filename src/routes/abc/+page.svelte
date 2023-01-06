@@ -84,7 +84,7 @@
 		<th on:click={() => sortByTime()}>Date + Time Made</th>
 	</thead>
 	<tbody
-		>{#each userData as { score, combo_one, combo_two, combo_three, created_at, user_made_by, profiles }}
+		>{#each userData as { score, combo_one, combo_two, combo_three, created_at, profiles }}
 			<tr
 				><td> {timeToString(score)}</td>
 				<td

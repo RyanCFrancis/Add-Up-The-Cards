@@ -28,7 +28,7 @@
 		<a href="/" class="sidebarItem">Game</a>
 		<a href="/Login" class="sidebarItem">Login</a>
 		<a href="/Account" class="sidebarItem">Your Account</a>
-		<a href="/Scores" class="sidebarItem">High Scores</a>
+		<a href="/abc" class="sidebarItem">High Scores</a>
 	</ul>
 {/if}
 
