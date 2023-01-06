@@ -100,7 +100,7 @@
 <p>{playerName}</p>
 <p>{userGoogleId}</p>
 
-<table class="sortable">
+<table>
 	<thead>
 		<th on:click={() => sortByScores()}>Time</th>
 		<th>Combination</th>
@@ -131,5 +131,6 @@
 	th,
 	td {
 		border: 1px solid white;
+		text-align: center;
 	}
 </style>
