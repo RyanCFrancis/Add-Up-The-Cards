@@ -8,10 +8,6 @@
 	let names: any[] = [];
 
 	onMount(async () => {
-		getScores();
-	});
-
-	async function getScores() {
 		const { data, error } = await supabase
 			.from('scores')
 			.select('score,combo_one,combo_two,combo_three,created_at,profiles (full_name)')
@@ -19,7 +15,7 @@
 
 		userData = data!;
 		console.log(userData);
-	}
+	});
 
 	function sortByScores() {
 		if (scoreASC) {
