@@ -96,9 +96,10 @@
 	}
 </script>
 
-<img src={playerIconString} alt="your icon :)" width="100" />
-<p>{playerName}</p>
-<p>{userGoogleId}</p>
+{#await onMount then}
+	<img src={playerIconString} alt="Your icon" width="100" />
+	<p>{playerName}</p>
+{/await}
 
 <table>
 	<thead>
