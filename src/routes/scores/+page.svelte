@@ -5,7 +5,6 @@
 	let scoreASC = false;
 	let timeASC = true;
 	let userData: any[] = [];
-	let names: any[] = [];
 
 	onMount(async () => {
 		const { data, error } = await supabase
