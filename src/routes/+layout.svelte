@@ -29,6 +29,7 @@
 		<a href="/Login" class="sidebarItem">Login</a>
 		<a href="/Account" class="sidebarItem">Your Account</a>
 		<a href="/abc" class="sidebarItem">High Scores</a>
+		<a href="/abc" class="sidebarItem">High Scores</a>
 	</ul>
 {/if}
 
