@@ -9,21 +9,16 @@
 
 	onMount(async () => {
 		getScores();
-		getNames();
 	});
 
 	async function getScores() {
-		let { data, error } = await supabase
+		const { data, error } = await supabase
 			.from('scores')
-			.select('score,combo_one,combo_two,combo_three,created_at,user_made_by')
+			.select('score,combo_one,combo_two,combo_three,created_at,profiles (full_name)')
 			.order('score', { ascending: true });
 
 		userData = data!;
-	}
-	async function getNames() {
-		let { data, error } = await supabase.from('profiles').select('id,full_name');
-
-		names = data!;
+		console.log(userData);
 	}
 
 	function sortByScores() {
@@ -94,7 +89,7 @@
 		<th on:click={() => sortByTime()}>Date + Time Made</th>
 	</thead>
 	<tbody
-		>{#each userData as { score, combo_one, combo_two, combo_three, created_at, user_made_by }}
+		>{#each userData as { score, combo_one, combo_two, combo_three, created_at, user_made_by, profiles }}
 			<tr
 				><td> {timeToString(score)}</td>
 				<td
@@ -102,7 +97,7 @@
 					{combo_two}
 					{combo_three}</td
 				>
-				<td>{user_made_by}</td>
+				<td>{profiles.full_name}</td>
 				<td>{new Date(created_at).toLocaleString()}</td>
 			</tr>
 		{/each}</tbody
