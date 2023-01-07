@@ -76,7 +76,7 @@
 </script>
 
 <h2>High Scores</h2>
-<table>
+<table class="tableClass">
 	<thead>
 		<th on:click={() => sortByScores()}>Time</th>
 		<th>Combination</th>
@@ -104,10 +104,19 @@
 		text-align: center;
 	}
 
-	table,
 	th,
 	td {
 		border: 1px solid white;
 		text-align: center;
+		padding: 2px;
+		margin: 2px;
+	}
+	.tableClass {
+		border: 1px solid white;
+		text-align: center;
+		padding: 2px;
+		margin: 2px;
+		position: relative;
+		margin: 0px auto;
 	}
 </style>

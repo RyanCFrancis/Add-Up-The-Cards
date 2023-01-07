@@ -96,7 +96,7 @@
 	}
 </script>
 
-{#await onMount then}
+{#await supabase.auth.getSession() then}
 	<img src={playerIconString} alt="Your icon" width="100" />
 	<p>{playerName}</p>
 {/await}
@@ -133,5 +133,7 @@
 	td {
 		border: 1px solid white;
 		text-align: center;
+		padding: 2px;
+		margin: 2px;
 	}
 </style>
