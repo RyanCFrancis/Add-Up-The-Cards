@@ -75,31 +75,38 @@
 	}
 </script>
 
-<h2>High Scores</h2>
-<table class="tableClass">
-	<thead>
-		<th on:click={() => sortByScores()}>Time</th>
-		<th>Combination</th>
-		<th>Player</th>
-		<th on:click={() => sortByTime()}>Date + Time Made</th>
-	</thead>
-	<tbody
-		>{#each userData as { score, combo_one, combo_two, combo_three, created_at, profiles }}
-			<tr
-				><td> {timeToString(score)}</td>
-				<td
-					>{combo_one}
-					{combo_two}
-					{combo_three}</td
-				>
-				<td>{profiles.full_name}</td>
-				<td>{new Date(created_at).toLocaleString()}</td>
-			</tr>
-		{/each}</tbody
-	>
-</table>
+<main>
+	<h2>High Scores</h2>
+	<table class="tableClass">
+		<thead>
+			<th on:click={() => sortByScores()}>Time</th>
+			<th>Combination</th>
+			<th>Player</th>
+			<th on:click={() => sortByTime()}>Date + Time Made</th>
+		</thead>
+		<tbody
+			>{#each userData as { score, combo_one, combo_two, combo_three, created_at, profiles }}
+				<tr
+					><td> {timeToString(score)}</td>
+					<td
+						>{combo_one}
+						{combo_two}
+						{combo_three}</td
+					>
+					<td>{profiles.full_name}</td>
+					<td>{new Date(created_at).toLocaleString()}</td>
+				</tr>
+			{/each}</tbody
+		>
+	</table>
+</main>
 
 <style>
+	main {
+		transform: translateX(-50%);
+		left: 50%;
+		position: absolute;
+	}
 	h2 {
 		text-align: center;
 	}

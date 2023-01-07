@@ -96,37 +96,53 @@
 	}
 </script>
 
-{#await supabase.auth.getSession() then}
-	<img src={playerIconString} alt="Your icon" width="100" />
-	<p>{playerName}</p>
-{/await}
+<main>
+	{#await supabase.auth.getSession() then}
+		<img
+			src={playerIconString}
+			alt="Your icon"
+			width="100"
+			style="transform: translateX(-50%);
+		left: 50%;
+		position: relative;"
+		/>
+		<p
+			style="transform: translateX(-50%);
+		left: 50%;
+		position: relative; text-align: center;"
+		>
+			{playerName}
+		</p>
+	{/await}
 
-<table>
-	<thead>
-		<th on:click={() => sortByScores()}>Time</th>
-		<th>Combination</th>
-		<th on:click={() => sortByTime()}>Date + Time Made</th>
-	</thead>
-	<tbody
-		>{#each userData as { score, combo_one, combo_two, combo_three, created_at }}
-			<tr
-				><td> {timeToString(score)}</td>
-				<td
-					>{combo_one}
-					{combo_two}
-					{combo_three}</td
-				>
-				<td>{new Date(created_at).toLocaleString()}</td>
-			</tr>
-		{/each}</tbody
-	>
-</table>
+	<table>
+		<thead>
+			<th on:click={() => sortByScores()}>Time</th>
+			<th>Combination</th>
+			<th on:click={() => sortByTime()}>Date + Time Made</th>
+		</thead>
+		<tbody
+			>{#each userData as { score, combo_one, combo_two, combo_three, created_at }}
+				<tr
+					><td> {timeToString(score)}</td>
+					<td
+						>{combo_one}
+						{combo_two}
+						{combo_three}</td
+					>
+					<td>{new Date(created_at).toLocaleString()}</td>
+				</tr>
+			{/each}</tbody
+		>
+	</table>
 
-<!-- <button
+	<!-- <button
 	on:click={() => {
 		addScore(10);
 	}}>adds a score!</button
 > -->
+</main>
+
 <style>
 	table,
 	th,
@@ -135,5 +151,10 @@
 		text-align: center;
 		padding: 2px;
 		margin: 2px;
+	}
+	main {
+		transform: translateX(-50%);
+		left: 50%;
+		position: absolute;
 	}
 </style>
