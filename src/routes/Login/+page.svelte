@@ -21,22 +21,29 @@
 	onMount(() => {});
 </script>
 
-{#if get(isLoggedIn)}
-	<p>You are logged in</p>
-	<button
-		on:click={() => {
-			isLoggedIn.set(false);
-			googleSignOut();
-			window.location.reload();
-		}}>Sign Out</button
-	>
-{:else if get(isLoggedIn) == false}
-	<button
-		on:click={() => {
-			googleLogin();
-		}}>Log in</button
-	>
-{/if}
+<main>
+	{#if get(isLoggedIn)}
+		<p>You are logged in</p>
+		<button
+			on:click={() => {
+				isLoggedIn.set(false);
+				googleSignOut();
+				window.location.reload();
+			}}>Sign Out</button
+		>
+	{:else if get(isLoggedIn) == false}
+		<button
+			on:click={() => {
+				googleLogin();
+			}}>Log in</button
+		>
+	{/if}
+</main>
 
 <style>
+	main {
+		transform: translateX(-50%);
+		left: 50%;
+		position: absolute;
+	}
 </style>
