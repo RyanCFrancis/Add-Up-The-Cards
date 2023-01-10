@@ -68,3 +68,11 @@ button:focus-visible {
 		background-color: #f9f9f9;
 	}
 }
+table,
+th,
+td {
+	border: 1px solid white;
+	text-align: center;
+	padding: 2px;
+	margin: 2px;
+}

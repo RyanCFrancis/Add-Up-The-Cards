@@ -144,14 +144,6 @@
 </main>
 
 <style>
-	table,
-	th,
-	td {
-		border: 1px solid white;
-		text-align: center;
-		padding: 2px;
-		margin: 2px;
-	}
 	main {
 		transform: translateX(-50%);
 		left: 50%;

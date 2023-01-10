@@ -110,20 +110,4 @@
 	h2 {
 		text-align: center;
 	}
-
-	th,
-	td {
-		border: 1px solid white;
-		text-align: center;
-		padding: 2px;
-		margin: 2px;
-	}
-	.tableClass {
-		border: 1px solid white;
-		text-align: center;
-		padding: 2px;
-		margin: 2px;
-		position: relative;
-		margin: 0px auto;
-	}
 </style>
