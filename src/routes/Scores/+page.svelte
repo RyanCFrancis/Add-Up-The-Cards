@@ -9,7 +9,7 @@
 	onMount(async () => {
 		const { data, error } = await supabase
 			.from('scores')
-			.select('score,combo_one,combo_two,combo_three,created_at,profiles (full_name)')
+			.select('score,combo_one,combo_two,combo_three,created_at,profiles (full_name,avatar_url,id)')
 			.order('score', { ascending: true });
 
 		userData = data!;
@@ -93,7 +93,7 @@
 						{combo_two}
 						{combo_three}</td
 					>
-					<td>{profiles.full_name}</td>
+					<td><a href="Profile/{profiles.id}">{profiles.full_name}</a></td>
 					<td>{new Date(created_at).toLocaleString()}</td>
 				</tr>
 			{/each}</tbody

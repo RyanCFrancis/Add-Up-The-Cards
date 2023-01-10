@@ -17,8 +17,6 @@
 	async function googleSignOut() {
 		const { error } = await supabase.auth.signOut();
 	}
-
-	onMount(() => {});
 </script>
 
 <main>

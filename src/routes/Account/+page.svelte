@@ -81,7 +81,7 @@
 
 		userData = userData;
 	}
-
+	// adding to db testing
 	async function addScore(time: number) {
 		const { data, error } = await supabase.from('scores').insert([
 			{
