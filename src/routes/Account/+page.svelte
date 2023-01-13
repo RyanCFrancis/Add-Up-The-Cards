@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
-	import type { AuthSession } from '@supabase/supabase-js';
 
 	let playerIconString: string;
 	let playerName: string;
@@ -97,24 +96,22 @@
 </script>
 
 <main>
-	{#await supabase.auth.getSession() then}
-		<img
-			src={playerIconString}
-			referrerpolicy="no-referrer"
-			alt="Your icon"
-			width="100"
-			style="transform: translateX(-50%);
+	<img
+		src={playerIconString}
+		referrerpolicy="no-referrer"
+		alt="Your icon"
+		width="100"
+		style="transform: translateX(-50%);
 		left: 50%;
 		position: relative;"
-		/>
-		<p
-			style="transform: translateX(-50%);
+	/>
+	<p
+		style="transform: translateX(-50%);
 		left: 50%;
 		position: relative; text-align: center;"
-		>
-			{playerName}
-		</p>
-	{/await}
+	>
+		{playerName}
+	</p>
 
 	<table>
 		<thead>

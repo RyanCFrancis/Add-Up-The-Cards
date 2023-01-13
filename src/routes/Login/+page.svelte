@@ -16,6 +16,10 @@
 	}
 	async function googleSignOut() {
 		const { error } = await supabase.auth.signOut();
+
+		supabase.auth.onAuthStateChange((event, session) => {
+			if (event == 'SIGNED_OUT') console.log('SIGNED_OUT', session);
+		});
 	}
 </script>
 
