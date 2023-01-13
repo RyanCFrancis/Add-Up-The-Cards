@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
-	import { onMount } from 'svelte';
 	import { isLoggedIn } from '../stores';
 	import { get } from 'svelte/store';
 
@@ -9,6 +8,7 @@
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
+				//dyanmic redirect based on if you are accessing via local host or through vercel
 				redirectTo: window.location.origin
 			}
 		});
@@ -18,7 +18,8 @@
 		const { error } = await supabase.auth.signOut();
 
 		supabase.auth.onAuthStateChange((event, session) => {
-			if (event == 'SIGNED_OUT') console.log('SIGNED_OUT', session);
+			//blank event to do nothing to sign the users out and remove the cookie
+			if (event == 'SIGNED_OUT') () => {};
 		});
 	}
 </script>
@@ -30,6 +31,7 @@
 			on:click={() => {
 				isLoggedIn.set(false);
 				googleSignOut();
+				//reloads the page so it appears like the user has logged out more elegantly
 				window.location.reload();
 			}}>Sign Out</button
 		>

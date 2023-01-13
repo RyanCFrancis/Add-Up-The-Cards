@@ -4,22 +4,23 @@
 	import { invalidate } from '$app/navigation';
 	import { supabase } from '$lib/supabaseClient';
 	let innerWidth: number;
+	let currentUser: any;
 
 	onMount(async () => {
-		// const {
-		// 	data: { subscription }
-		// } = supabase.auth.onAuthStateChange(() => {
-		// 	invalidate('supabase:auth');
-		// });
-		// return () => {
-		// 	subscription.unsubscribe();
-		// };
-
 		const {
 			data: { user }
 		} = await supabase.auth.getUser();
+		currentUser = user;
 
-		console.log(user);
+		console.log(currentUser);
+		const {
+			data: { subscription }
+		} = supabase.auth.onAuthStateChange(() => {
+			invalidate('supabase:auth');
+		});
+		return () => {
+			subscription.unsubscribe();
+		};
 	});
 </script>
 
@@ -33,8 +34,11 @@
 	<div class="sidebar">
 		<div class="sidebarList">
 			<a href="/" class="sidebarItem">Game</a>
-			<a href="/Login" class="sidebarItem">Login</a>
-			<a href="/Account" class="sidebarItem">Your Account</a>
+			{#if currentUser == null}
+				<a href="/Login" class="sidebarItem">Login</a>
+			{:else if currentUser}
+				<a href="/Account" class="sidebarItem">Your Account</a>
+			{/if}
 			<a href="/Scores" class="sidebarItem">High Scores</a>
 		</div>
 		<div class="sidebarExtension" />

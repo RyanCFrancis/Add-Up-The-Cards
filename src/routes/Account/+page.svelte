@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { supabase } from '$lib/supabaseClient';
 	import { onMount } from 'svelte';
+	import { isLoggedIn } from '../stores';
 
 	let playerIconString: string;
 	let playerName: string;
@@ -9,6 +10,16 @@
 
 	let scoreASC = false;
 	let timeASC = true;
+	async function googleSignOut() {
+		const { error } = await supabase.auth.signOut();
+		console.log(error);
+
+		supabase.auth.onAuthStateChange((event, session) => {
+			//blank event to do nothing to sign the users out and remove the cookie
+			if (event == 'SIGNED_OUT') console.log('logged out');
+		});
+		window.location.replace('/Login');
+	}
 
 	onMount(async () => {
 		userGoogleId = (await supabase.auth.getSession()).data.session?.user.id;
@@ -112,6 +123,15 @@
 	>
 		{playerName}
 	</p>
+	<button
+		style="transform: translateX(-50%);
+	left: 50%;
+	position: relative; text-align: center; margin-bottom:10%"
+		on:click={() => {
+			isLoggedIn.set(false);
+			googleSignOut();
+		}}>Sign Out</button
+	>
 
 	<table>
 		<thead>
