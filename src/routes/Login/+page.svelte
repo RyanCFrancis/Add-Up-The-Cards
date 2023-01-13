@@ -42,6 +42,7 @@
 	main {
 		transform: translateX(-50%);
 		left: 50%;
+		bottom: 50%;
 		position: absolute;
 	}
 </style>
