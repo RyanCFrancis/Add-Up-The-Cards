@@ -100,6 +100,7 @@
 	{#await supabase.auth.getSession() then}
 		<img
 			src={playerIconString}
+			referrerpolicy="no-referrer"
 			alt="Your icon"
 			width="100"
 			style="transform: translateX(-50%);

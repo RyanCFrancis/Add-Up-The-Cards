@@ -28,7 +28,8 @@
 <main>
 	<img
 		src={data.playerIconString}
-		alt="Your icon"
+		alt="Player icon"
+		referrerpolicy="no-referrer"
 		width="100"
 		style="transform: translateX(-50%);
 		left: 50%;

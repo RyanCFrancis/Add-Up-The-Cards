@@ -2,10 +2,10 @@
 	import './styles.css';
 	import { onMount } from 'svelte';
 	import { invalidate } from '$app/navigation';
-	//import { supabase } from '$lib/supabaseClient';
+	import { supabase } from '$lib/supabaseClient';
 	let innerWidth: number;
 
-	onMount(() => {
+	onMount(async () => {
 		// const {
 		// 	data: { subscription }
 		// } = supabase.auth.onAuthStateChange(() => {
@@ -14,6 +14,12 @@
 		// return () => {
 		// 	subscription.unsubscribe();
 		// };
+
+		const {
+			data: { user }
+		} = await supabase.auth.getUser();
+
+		console.log(user);
 	});
 </script>
 
