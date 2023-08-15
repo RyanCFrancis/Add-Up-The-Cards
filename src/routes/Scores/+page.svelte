@@ -5,6 +5,7 @@
 	let scoreASC = false;
 	let timeASC = true;
 	let userData: any[] = [];
+	let timeSortString = '↨';
 
 	onMount(async () => {
 		const { data, error } = await supabase
@@ -79,7 +80,7 @@
 	<h2>High Scores</h2>
 	<table class="tableClass">
 		<thead>
-			<th on:click={() => sortByScores()}>Time</th>
+			<th on:click={() => sortByScores()}>Time {timeSortString}</th>
 			<th>Combination</th>
 			<th>Player</th>
 			<th on:click={() => sortByTime()}>Date + Time Made</th>
