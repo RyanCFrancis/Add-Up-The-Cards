@@ -470,7 +470,7 @@
 		{#each hand as q (q)}
 			<div>
 				<div
-					on:click={() => {
+					on:mousedown={() => {
 						removingLane = 'inHand';
 						cardClick(q, playHand);
 					}}
@@ -503,7 +503,7 @@
 		{#each leftLaneCards as q (q)}
 			<div
 				in:fly={{ y: -70 }}
-				on:click={() => {
+				on:mousedown={() => {
 					removingLane = 'left';
 					cardClick(q, leftLane);
 				}}
@@ -527,7 +527,7 @@
 		{#each midLaneCards as q (q)}
 			<div
 				in:fly={{ y: -70 }}
-				on:click={() => {
+				on:mousedown={() => {
 					removingLane = 'mid';
 					cardClick(q, midLane);
 				}}
@@ -551,7 +551,7 @@
 		{#each rightLaneCards as q (q)}
 			<div
 				in:fly={{ y: -70 }}
-				on:click={() => {
+				on:mousedown={() => {
 					removingLane = 'right';
 					cardClick(q, rightLane);
 				}}
