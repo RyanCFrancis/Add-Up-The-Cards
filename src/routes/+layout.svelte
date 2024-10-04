@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { invalidate } from '$app/navigation';
 	import { supabase } from '$lib/supabaseClient';
+	import type { Unsubscriber } from 'svelte/motion';
 	let innerWidth: number;
 	let currentUser: any;
 
@@ -18,9 +19,6 @@
 		} = supabase.auth.onAuthStateChange(() => {
 			invalidate('supabase:auth');
 		});
-		return () => {
-			subscription.unsubscribe();
-		};
 	});
 </script>
 
