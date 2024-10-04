@@ -42,6 +42,6 @@
 		"@supabase/gotrue-js": "^2.6.2",
 		"@supabase/supabase-js": "^2.2.3",
 		"jsonwebtoken": "^9.0.0",
-		"svelte-local-storage-store": "^0.3.2"
+		"svelte-local-storage-store": "^0.6.4"
 	}
 }
