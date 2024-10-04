@@ -26,7 +26,7 @@
 		"@typescript-eslint/parser": "^7.0.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-svelte3": "^4.0.0",
+		"eslint-plugin-svelte": "^2.44.1",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
 		"supabase": "^1.27.9",
@@ -42,6 +42,7 @@
 		"@supabase/auth-helpers-sveltekit": "^0.8.6",
 		"@supabase/gotrue-js": "^2.6.2",
 		"@supabase/supabase-js": "^2.2.3",
+		"@sveltejs/adapter-vercel": "^5.4.4",
 		"add-up-the-cards": "file:",
 		"jsonwebtoken": "^9.0.0",
 		"svelte-local-storage-store": "^0.6.4"
