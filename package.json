@@ -23,7 +23,7 @@
 		"@tsconfig/svelte": "^3.0.0",
 		"@types/cookie": "^0.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.9.1",
-		"@typescript-eslint/parser": "^3.10.1",
+		"@typescript-eslint/parser": "^7.0.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -42,6 +42,7 @@
 		"@supabase/auth-helpers-sveltekit": "^0.8.6",
 		"@supabase/gotrue-js": "^2.6.2",
 		"@supabase/supabase-js": "^2.2.3",
+		"add-up-the-cards": "file:",
 		"jsonwebtoken": "^9.0.0",
 		"svelte-local-storage-store": "^0.6.4"
 	}
