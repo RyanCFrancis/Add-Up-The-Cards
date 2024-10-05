@@ -465,6 +465,7 @@
 	<LaneBox pos={'inHand'} isVisible={laneBoxesVisible} />
 </div>
 <!-- player hand -->
+
 <div class="hand">
 	{#key handCount}
 		{#each hand as q (q)}

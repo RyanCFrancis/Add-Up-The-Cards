@@ -28,29 +28,19 @@
 		userData = userData;
 	}
 	function sortByTime() {
-		if (timeASC) {
-			userData.sort((a, b) => {
-				const itemA = new Date(a.created_at).getTime();
-				const itemB = new Date(b.created_at).getTime();
-				if (itemA > itemB) {
-					return 1;
-				} else {
-					return -1;
-				}
-			});
-		} else {
-			userData.sort((a, b) => {
-				const itemA = new Date(a.created_at).getTime();
-				const itemB = new Date(b.created_at).getTime();
-				if (itemA > itemB) {
-					return -1;
-				} else {
-					return 1;
-				}
-			});
-		}
-		timeASC = !timeASC;
-
+		userData.sort((a, b) => {
+			// if time is ascending leave the same order
+			// if time is not, multipy the return to reverse the order
+			let timeASCMultiplier = timeASC ? 1 : -1;
+			const itemA = new Date(a.created_at).getTime();
+			const itemB = new Date(b.created_at).getTime();
+			if (itemA > itemB) {
+				return 1 * timeASCMultiplier;
+			} else {
+				return -1 * timeASCMultiplier;
+			}
+		});
+		timeASC = !timeASC; // toggle state for next time the button is pushed
 		userData = userData;
 	}
 
