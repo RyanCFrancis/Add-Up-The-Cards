@@ -47,6 +47,7 @@
 		padding: 1%;
 		overflow: visible;
 
+		border-radius: 1vh;
 		background-color: rgb(165, 81, 32);
 		color: rgb(245, 245, 245);
 		z-index: 3;

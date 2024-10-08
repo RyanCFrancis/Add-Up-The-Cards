@@ -50,7 +50,6 @@
 	let winText = 'Hey! You beat the game with a time of ';
 	let winAppear = false;
 
-	let timerActive = false;
 	let timerVis = false;
 	let currentTimeString = '';
 	let timeStart: number;
@@ -143,10 +142,10 @@
 		midSum = 0;
 		rightSum = 0;
 		isSolvedList = [false, false, false];
-		timerActive = false;
 		//need to refresh the wintext otherwise it compounds the times when the game is beaten
 		winText = 'Hey! You beat the game with a time of ';
-		timeStart = Date.now();
+		timerVis = false;
+		// timeStart = Date.now();
 	}
 
 	function addCardToPack(card: cardType, pack: packType) {
@@ -345,7 +344,6 @@
 
 	function gameWon() {
 		//console.log(sortedCombo);
-		timerActive = false;
 		timerVis = false;
 		winText += currentTimeString;
 		winAppear = true;
@@ -353,7 +351,6 @@
 	}
 
 	function resetTimer() {
-		timerActive = true;
 		timeStart = Date.now();
 		if (vWidth > acceptableWidth) {
 			timerVis = true;
