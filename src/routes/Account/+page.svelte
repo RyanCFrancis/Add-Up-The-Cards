@@ -128,6 +128,7 @@
 	left: 50%;
 	position: relative; text-align: center; margin-bottom:10%"
 		on:click={() => {
+			//TODO: improve this to connect to actual supabase auth
 			isLoggedIn.set(false);
 			googleSignOut();
 		}}>Sign Out</button

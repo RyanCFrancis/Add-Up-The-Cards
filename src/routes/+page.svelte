@@ -452,6 +452,7 @@
 />
 
 <!-- player return to hand button -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class="handBox"
 	on:click={() => {
@@ -467,6 +468,7 @@
 	{#key handCount}
 		{#each hand as q (q)}
 			<div>
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<div
 					on:mousedown={() => {
 						removingLane = 'inHand';
@@ -489,6 +491,7 @@
 <!-- boxes to place in the lanes and the lanes themselves -->
 
 <div class="horizontal left">
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
 		on:click={() => {
 			setCurrentLane('left');
@@ -499,6 +502,7 @@
 	</div>
 	{#key leftCount}
 		{#each leftLaneCards as q (q)}
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
 				in:fly={{ y: -70 }}
 				on:mousedown={() => {
@@ -518,11 +522,13 @@
 </div>
 
 <div class="horizontal mid">
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click={() => setCurrentLane('mid')} on:keypress={() => {}}>
 		<LaneBox pos={'mid'} isVisible={laneBoxesVisible} />
 	</div>
 	{#key midCount}
 		{#each midLaneCards as q (q)}
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
 				in:fly={{ y: -70 }}
 				on:mousedown={() => {
@@ -542,11 +548,13 @@
 </div>
 
 <div class="horizontal right">
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click={() => setCurrentLane('right')} on:keypress={() => {}}>
 		<LaneBox pos={'mid'} isVisible={laneBoxesVisible} />
 	</div>
 	{#key rightCount}
 		{#each rightLaneCards as q (q)}
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
 				in:fly={{ y: -70 }}
 				on:mousedown={() => {

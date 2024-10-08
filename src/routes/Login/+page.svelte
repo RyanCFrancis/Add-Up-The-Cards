@@ -4,7 +4,7 @@
 	import { get } from 'svelte/store';
 
 	async function googleLogin() {
-		isLoggedIn.set(true);
+		isLoggedIn.set(false);
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
 			options: {
@@ -13,6 +13,9 @@
 			}
 		});
 		const authToken = data;
+		if (data.provider === 'google') {
+			isLoggedIn.set(true);
+		}
 	}
 	async function googleSignOut() {
 		const { error } = await supabase.auth.signOut();
