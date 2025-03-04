@@ -23,7 +23,7 @@ Card Stack Puzzle is a brain-teasing card game that challenges players to arrang
 ## Features
 
 - **Responsive Design**: Playable on both desktop and mobile devices.
-- **User Accounts**: Sign in with Google to track your scores and progress.
+- **User Accounts**: Sign in with your Google Account to track your scores and progress.
 - **Leaderboards**: View your personal best times and view the profiles of other players.
 
 ## Play Now
