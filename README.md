@@ -1,4 +1,4 @@
-# Card Stack Puzzle Game
+# Add Up The Cards
 
 A full-stack mathematical puzzle game built with SvelteKit, Node.js, and Supabase where players strategically place cards into stacks to match target sums.
 
