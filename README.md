@@ -19,7 +19,7 @@ This project uses SvelteKit for the frontend with Supabase providing backend ser
 
 ## Game Overview
 
-Card Stack Puzzle is a brain-teasing card game that challenges players to arrange numbered cards into stacks that match specific target sums. 
+Add Up The Cards is a brain-teasing card game that challenges players to arrange numbered cards into stacks that match specific target sums. 
 
 
 ## Features
